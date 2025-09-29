@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_REPO = "bhargavteja14/inner_peace"  
+        DOCKER_HUB_REPO = "bhargavteja14/inner_peace"
         IMAGE_TAG = "latest"
     }
 
@@ -17,7 +17,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${bhargavteja14/inner_peace}:${latest}")
+                    // Use environment variables
+                    docker.build("${env.DOCKER_HUB_REPO}:${env.IMAGE_TAG}")
                 }
             }
         }
@@ -26,7 +27,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
-                        docker.image("${bhargavteja14/inner_peace}:${latest}").push()
+                        docker.image("${env.DOCKER_HUB_REPO}:${env.IMAGE_TAG}").push()
                     }
                 }
             }
