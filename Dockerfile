@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y apache2 && \
     
 RUN rm -rf /var/www/html/*
 
-COPY 2143_inner_peace/ /var/www/html/
+COPY app/ /var/www/html/
 
 EXPOSE 80
 
